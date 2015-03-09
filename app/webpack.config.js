@@ -1,24 +1,30 @@
 'use strict';
 
 var path = require('path'),
-    webpack = require('webpack');
+    webpack = require('webpack'),
+    bowerPath = path.join(__dirname, 'bower_components'),
+    BowerWebpackPlugin = require('bower-webpack-plugin');
 
 module.exports = {
     entry: './app.js',
     context: path.join(__dirname, 'src/'),
     resolve: {
-        root: [path.join(__dirname, 'bower_components')]
+        root: [bowerPath]
     },
     plugins: [
-        new webpack.ResolverPlugin(
-            new webpack.ResolverPlugin.DirectoryDescriptionFilePlugin('bower.json', ['main'])
-        )
+        new BowerWebpackPlugin(),
+        new webpack.ProvidePlugin({
+            "React": "react"
+        })
     ],
     output: {
         path: path.join(__dirname, 'build/'),
         filename: 'bundle.js'
     },
     module: {
+        noParse: [
+           /\.min\.js/, bowerPath
+        ],
         loaders: [
             {
                 test: /\.jsx$/,

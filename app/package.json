@@ -9,6 +9,7 @@
   "author": "Alexander Burtsev",
   "license": "MIT",
   "devDependencies": {
+    "bower-webpack-plugin": "^0.1.6",
     "browser-sync": "^2.2.2",
     "css-loader": "^0.9.1",
     "gulp": "^3.8.11",
