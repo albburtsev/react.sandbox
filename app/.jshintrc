@@ -1,0 +1,24 @@
+
+{
+  "bitwise": true,
+  "browser": true,
+  "eqeqeq": true,
+  "curly": true,
+  "debug": true,
+  "devel": true,
+  "forin": true,
+  "freeze": true,
+  "immed": true,
+  "latedef": true,
+  "maxdepth": 4,
+  "node": true,
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "nonbsp": true,
+  "undef": true,
+  "unused": true,
+  "predef": [
+    "require"
+  ]
+}
