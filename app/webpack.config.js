@@ -19,7 +19,6 @@ module.exports = {
         filename: 'bundle.js'
     },
     module: {
-        // noParse: /react/,
         loaders: [
             {
                 test: /\.jsx$/,
