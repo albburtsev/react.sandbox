@@ -1,6 +1,7 @@
 'use strict';
 
-var b = Block('menu');
+let b = Block('menu');
+let Link = Router.Link;
 
 /**
  * Menu component
@@ -19,8 +20,8 @@ class Menu extends React.Component {
     render() {
         return (
             <ul className={b}>
-                {this.state.list.map(item => {
-                    return <li className={b('item')}>{item}</li>;
+                {this.state.list.map((item, idx) => {
+                    return <li key={idx} className={b('item')}><Link to={item.toLowerCase()}>{item}</Link></li>;
                 })}
             </ul>
         );

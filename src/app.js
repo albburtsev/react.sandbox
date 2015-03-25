@@ -1,8 +1,7 @@
 'use strict';
 
-import Root from './components/Root/Root.js';
+import {Root, routes} from './components/Root/Root.js';
 
-React.render(
-    React.createElement(Root),
-    document.body
-);
+Router.run(routes, Router.HistoryLocation, function (Handler) {
+    React.render(<Handler/>, document.body);
+});

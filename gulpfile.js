@@ -10,10 +10,8 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload;
 
-var ENV = process.env.NODE_ENV || 'development',
-    isDevelopment = ENV === 'development';
-
-var jsSource = 'src/**/*.js',
+var isDevelopment = process.env.NODE_ENV !== 'production',
+    jsSource = 'src/**/*.js',
     stylSource = ['src/**/*.styl'],
     dest = 'build/';
 
