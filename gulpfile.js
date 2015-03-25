@@ -16,10 +16,10 @@ var ENV = process.env.NODE_ENV || 'development',
 
 var jsSource = [
         'gulpfile.js',
-        'src/**/*.js'
+        'app/src/**/*.js'
     ],
-    jsxSource = ['src/**/*.jsx'],
-    stylSource = ['src/**/*.styl'];
+    jsxSource = ['app/src/**/*.jsx'],
+    stylSource = ['app/src/**/*.styl'];
 
 // DRY task for code style
 gulp.task('jscs', function() {
@@ -67,7 +67,7 @@ gulp.task('watch', function() {
     if (isDevelopment) {
         browserSync({
             server: {
-                baseDir: '../'
+                baseDir: '.'
             }
         });
     }

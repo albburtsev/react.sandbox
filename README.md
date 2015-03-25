@@ -2,6 +2,15 @@
 
 My small laboratory for dissection [React.js](http://facebook.github.io/react/).
 
+## Install
+
+```bash
+git clone https://github.com/albburtsev/react.sandbox.git
+cd react.sandbox
+npm i
+npm start
+```
+
 ## Helpful articles
 
  * [Ryan Clark: Introduction to Facebook's Flux architecture](http://ryanclark.me/getting-started-with-flux/)
