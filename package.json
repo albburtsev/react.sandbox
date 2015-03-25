@@ -4,8 +4,8 @@
   "description": "My small laboratory for dissection React.js",
   "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "bower i && gulp"
+    "postinstall": "bower i",
+    "start": "gulp"
   },
   "author": "Alexander Burtsev",
   "license": "MIT",
