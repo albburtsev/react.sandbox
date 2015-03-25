@@ -3,62 +3,44 @@
 var gulp = require('gulp'),
     gulpIf = require('gulp-if'),
     webpack = require('gulp-webpack'),
-    stylish = require('jshint-stylish'),
     notifier = require('node-notifier'),
-    jshint = require('gulp-jshint'),
-    jsxcs = require('gulp-jsxcs'),
-    jscs = require('gulp-jscs'),
+    stylus = require('gulp-stylus'),
+    nib = require('nib'),
+    rename = require('gulp-rename'),
     browserSync = require('browser-sync'),
     reload = browserSync.reload;
 
 var ENV = process.env.NODE_ENV || 'development',
     isDevelopment = ENV === 'development';
 
-var jsSource = [
-        'gulpfile.js',
-        'app/src/**/*.js'
-    ],
-    jsxSource = ['app/src/**/*.jsx'],
-    stylSource = ['app/src/**/*.styl'];
+var jsSource = 'app/src/**/*.js',
+    stylSource = ['app/src/**/*.styl'],
+    dest = 'build/';
 
-// DRY task for code style
-gulp.task('jscs', function() {
+gulp.task('stylus', function() {
     return gulp
-        .src(jsSource)
-        .pipe(jshint())
-        .pipe(jshint.reporter(stylish))
-        .pipe(jscs('./.jscsrc'))
-        .on('error', function() {
+        .src(stylSource)
+        .pipe(stylus({
+            compress: false,
+            use: nib(),
+            'import': ['nib']
+        }))
+        .on('error', function(error) {
             if (isDevelopment) {
-                notifier.notify({
-                    title: 'JSCS',
-                    message: 'Incorrect code style'
-                });
+                console.log('Oooooops! Run gulp again :-(', error);
             }
-        });
-});
-
-// Code style for .jsx-files
-gulp.task('jsxcs', function() {
-    return gulp
-        .src(jsxSource)
-        .pipe(jshint.reporter(stylish))
-        .pipe(jsxcs('./.jscsrc'))
-        .on('error', function() {
-            if (isDevelopment) {
-                notifier.notify({
-                    title: 'JSXCS',
-                    message: 'Incorrect code style'
-                });
-            }
-        });
+            return false;
+        })
+        .pipe(rename('bundle.css'))
+        .pipe(gulp.dest(dest))
+        .pipe(gulpIf(isDevelopment, reload({stream: true})));
 });
 
 // Build task
 gulp.task('webpack', function() {
     return gulp.src('src/app.js')
         .pipe(webpack(require('./webpack.config.js')))
-        .pipe(gulp.dest('build/'))
+        .pipe(gulp.dest(dest))
         .pipe(gulpIf(isDevelopment, reload({stream: true})));
 });
 
@@ -72,10 +54,9 @@ gulp.task('watch', function() {
         });
     }
 
-    gulp.watch(jsSource, ['jscs', 'webpack']);
-    gulp.watch(jsxSource, ['jsxcs', 'webpack']);
-    gulp.watch(stylSource, ['webpack']);
+    gulp.watch(jsSource, ['webpack']);
+    gulp.watch(stylSource, ['stylus']);
 });
 
-gulp.task('default', ['jscs', 'jsxcs', 'webpack', 'watch']);
-gulp.task('deploy', ['jscs', 'jsxcs', 'webpack']);
+gulp.task('default', ['stylus', 'webpack', 'watch']);
+gulp.task('deploy', ['stylus', 'webpack']);

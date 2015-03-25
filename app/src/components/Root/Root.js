@@ -1,16 +1,14 @@
 'use strict';
 
-require('./Root.styl');
-
 /**
  * Root component, once on page
  */
-var Root = React.createClass({
-    render: function() {
+class Root extends React.Component{
+    render() {
         return (
             <div className="root">Hello, React!</div>
         );
     }
-});
+}
 
 module.exports = Root;

@@ -3,6 +3,7 @@
 var path = require('path'),
     webpack = require('webpack'),
     bowerPath = path.join(__dirname, 'bower_components'),
+    nodePath = path.join(__dirname, 'node_modules'),
     BowerWebpackPlugin = require('bower-webpack-plugin');
 
 module.exports = {
@@ -10,6 +11,9 @@ module.exports = {
     context: path.join(__dirname, 'app/src/'),
     resolve: {
         root: [bowerPath]
+    },
+    resolveLoader: {
+        root: [nodePath]
     },
     plugins: [
         new BowerWebpackPlugin(),
@@ -27,16 +31,9 @@ module.exports = {
         ],
         loaders: [
             {
-                test: /\.jsx$/,
-                loader: 'jsx-loader'
-            },
-            {
-                test: /\.css$/,
-                loader: 'style!css'
-            },
-            {
-                test: /\.styl$/,
-                loader: 'style-loader!css-loader!stylus-loader'
+                test: /\.js$/,
+                exclude: bowerPath,
+                loader: 'babel-loader'
             }
         ]
     }

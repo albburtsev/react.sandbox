@@ -1,6 +1,6 @@
 'use strict';
 
-var Root = require('./components/Root/Root.jsx');
+import Root from './components/Root/Root.js';
 
 React.render(
     React.createElement(Root),
