@@ -8,7 +8,7 @@ var path = require('path'),
 
 module.exports = {
     entry: './app.js',
-    context: path.join(__dirname, 'app/src/'),
+    context: path.join(__dirname, 'src/'),
     resolve: {
         root: [bowerPath]
     },

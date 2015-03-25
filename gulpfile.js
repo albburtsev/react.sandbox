@@ -13,8 +13,8 @@ var gulp = require('gulp'),
 var ENV = process.env.NODE_ENV || 'development',
     isDevelopment = ENV === 'development';
 
-var jsSource = 'app/src/**/*.js',
-    stylSource = ['app/src/**/*.styl'],
+var jsSource = 'src/**/*.js',
+    stylSource = ['src/**/*.styl'],
     dest = 'build/';
 
 gulp.task('stylus', function() {
