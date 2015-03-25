@@ -19,7 +19,7 @@ var jsSource = 'src/**/*.js',
 
 gulp.task('stylus', function() {
     return gulp
-        .src(stylSource)
+        .src('./src/app.styl')
         .pipe(stylus({
             compress: false,
             use: nib(),

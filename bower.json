@@ -9,6 +9,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "react": "~0.13.1"
+    "react": "~0.13.1",
+    "bem-cn": "~0.0.4"
   }
 }

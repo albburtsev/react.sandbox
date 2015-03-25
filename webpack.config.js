@@ -18,7 +18,8 @@ module.exports = {
     plugins: [
         new BowerWebpackPlugin(),
         new webpack.ProvidePlugin({
-            'React': 'react'
+            'React': 'react',
+            'Block': 'bem-cn'
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
